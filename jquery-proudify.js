@@ -49,13 +49,16 @@
 				for(var i in result.data)
 					self.repositories.push(result.data[i]);
 					
-				if(result.meta['Link'][0][1]['rel'] == 'first')
+				if (result.meta["Link"] === undefined)
 				{
 					self.render();
-				}
-				else
-				{
-					self.fetch(result.meta['Link'][0][0]+'&callback=?');
+				} else {
+					if(result.meta['Link'][0][1]['rel'] == 'first')
+					{
+						self.render();
+					} else {
+						self.fetch(result.meta['Link'][0][0]+'&callback=?');
+					}
 				}
 			});
 		},
